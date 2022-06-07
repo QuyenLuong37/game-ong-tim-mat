@@ -1,0 +1,33 @@
+.move {
+   animation-name: example;
+   animation-duration: 6s;
+   animation-iteration-count: infinite;
+   animation-timing-function: ease-in;
+   /* background: #fff; */
+   background-image: url('https://picsum.photos/200/200');
+ }
+ 
+ @keyframes example {
+   0% {
+     top: 200px;
+     left: 160px;
+     background-image: url('https://picsum.photos/200/200');
+   } 
+   25% {
+     top: 250px;
+     left: 140px;
+     /* background: yellow; */
+     background-image: url('https://picsum.photos/200/200');
+   }  
+   50% {
+     top: 80px;
+     left: 60px;
+     background-image: url('https://picsum.photos/200/200');
+   }
+   100% {
+     top: 200px;
+     left: 160px;
+     background-image: url('https://picsum.photos/200/200');
+   }
+ }
+  
