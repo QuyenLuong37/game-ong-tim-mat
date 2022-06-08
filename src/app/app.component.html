@@ -1,134 +1,136 @@
-<div class="mt-4 text-center text-4xl font-bold text-red-400 ">
-  <div class="animate__animated animate__flash animate__infinite">
-    Game Ong Tìm Mật!
-  </div>
-</div>
-<div class="bg-[url('/assets/img/bg.png')] h-[550px] w-[980px] bg-cover bg-no-repeat overflow-hidden mx-auto rounded-lg mt-10">
-  <div class="relative h-full">
-    <div class="hive absolute top-6 -left-[80px]" [class.to-ong-rong]="!isHoneycombHive" [class.to-ong-mat]="isHoneycombHive" [class.honey]="isCorrectAnswer === 1">
-      <!-- <img src="/assets/img/to-ong-rong.png" width="250px" alt=""> -->
+<div class="py-4 bg-[url('/assets/img/bg-sky.png')] bg-repeat-x">
+  <div class="text-center text-4xl font-bold text-red-400 ">
+    <div class="animate__animated animate__flash animate__infinite">
+      Game Ong Tìm Mật!
     </div>
-    <div class="bee w-24 rounded h-24 absolute bg-contain bg-no-repeat transition" [class.fly]="isCorrectAnswer === 1" [class.sad]="isCorrectAnswer === 2"></div>
-
-    <div [class.jars-honey]="isCorrectAnswer === 2" ></div>
+  </div>
+  <div class="bg-[url('/assets/img/bg.png')] h-[550px] w-[980px] bg-cover bg-no-repeat overflow-hidden mx-auto rounded-lg mt-6  shadow-lg">
+    <div class="relative h-full">
+      <div class="hive absolute top-6 -left-[80px]" [class.to-ong-rong]="!isHoneycombHive" [class.to-ong-mat]="isHoneycombHive" [class.honey]="isCorrectAnswer === 1">
+        <!-- <img src="/assets/img/to-ong-rong.png" width="250px" alt=""> -->
+      </div>
+      <div class="bee w-24 rounded h-24 absolute bg-contain bg-no-repeat transition" [class.fly]="isCorrectAnswer === 1" [class.sad]="isCorrectAnswer === 2"></div>
   
-    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
-      <div class="relative">
-        <div class="flex w-[580px]">
-          <img src="/assets/img/bang.png">
-        </div>
-
-        <div class="absolute top-0 left-1/2 -translate-x-1/2">
-          <span class="font-extrabold text-[28px] text-white" style="text-shadow: 1px 1px 6px #cececedb">Câu {{questionSelectedIndex + 1}}/{{listOfQuestionsOrigin.length || 0}}</span>
-        </div>
-
-        <ng-container *ngIf="listOfQuestions && listOfQuestions.length;">
-          <ng-container *ngFor="let item of listOfQuestions;let i=index">
-            <div class="absolute top-[75px] left-[50px] right-[50px]">
-              <div class="grid grid-cols-[minmax(260px,_1fr)_1fr] gap-x-4 mt-3 justify-items-end animate__animated animate__zoomIn">
-                  <div class="text-[#CA4D1C] font-bold">{{item.name}}</div>
-                  <div>
-                  <img src="/assets/img/bien.png" width="180px">
-                </div>
-              </div>
-            </div>
+      <div [class.jars-honey]="isCorrectAnswer === 2" ></div>
     
-            <div class="absolute left-[50px] right-[50px] bottom-[55px]">
-              <div class="grid grid-cols-2 gap-4">
-                <div class="grid grid-cols-[40px_1fr] items-center gap-x-3 cursor-pointer" *ngFor="let c of item.choices;let j=index" (click)="choiceSelected ? null : answer(c, item)">
-                  <div class="relative w-10 h-10">
-                    <ng-container *ngIf="choiceSelected && choiceSelected?.id === c.id; else btn">
-                      <ng-container *ngIf="choiceSelected?.id !== item.correct.idChoice;">
-                        <img class="w-10 h-10 cursor-pointer" src="/assets/img/btn-sai.png" alt="">
-                      </ng-container>
-                      <ng-container *ngIf="choiceSelected?.id === item.correct.idChoice;">
-                        <img class="w-10 h-10 cursor-pointer" src="/assets/img/btn-dung.png" alt="">
-                      </ng-container>
-
-                    </ng-container>
-                    <ng-template #btn>
-                      <img class="w-10 h-10 cursor-pointer" src="/assets/img/btn.png" alt="">
-                    </ng-template>
-                    <div class="absolute top-[42%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-white text-2xl">
-                      <ng-container *ngIf="j===0">A</ng-container>
-                      <ng-container *ngIf="j===1">B</ng-container>
-                      <ng-container *ngIf="j===2">C</ng-container>
-                      <ng-container *ngIf="j===3">D</ng-container>
-                    </div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
+        <div class="relative">
+          <div class="flex w-[580px]">
+            <img src="/assets/img/bang.png">
+          </div>
+  
+          <div class="absolute top-0 left-1/2 -translate-x-1/2">
+            <span class="font-extrabold text-[28px] text-white" style="text-shadow: 1px 1px 6px #cececedb">Câu {{questionSelectedIndex + 1}}/{{listOfQuestionsOrigin.length || 0}}</span>
+          </div>
+  
+          <ng-container *ngIf="listOfQuestions && listOfQuestions.length;">
+            <ng-container *ngFor="let item of listOfQuestions;let i=index">
+              <div class="absolute top-[75px] left-[50px] right-[50px]">
+                <div class="grid grid-cols-[minmax(260px,_1fr)_1fr] gap-x-4 mt-3 justify-items-end animate__animated animate__zoomIn">
+                    <div class="text-[#CA4D1C] font-bold">{{item.name}}</div>
+                    <div>
+                    <img src="/assets/img/bien.png" width="180px">
                   </div>
-                  <div class="font-bold text-[#CA4D1C] animate__delay-1s animate__animated animate__zoomIn" [ngClass]="{'animate__headShake': choiceSelected && choiceSelected?.id === c.id && choiceSelected?.id !== item.correct.idChoice, 'animate__flash': choiceSelected && choiceSelected?.id === c.id && choiceSelected?.id === item.correct.idChoice}">{{c.name}}</div>
                 </div>
-                
+              </div>
+      
+              <div class="absolute left-[50px] right-[50px] bottom-[55px]">
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="grid grid-cols-[40px_1fr] items-center gap-x-3 cursor-pointer" *ngFor="let c of item.choices;let j=index" (click)="choiceSelected ? null : answer(c, item)">
+                    <div class="relative w-10 h-10">
+                      <ng-container *ngIf="choiceSelected && choiceSelected?.id === c.id; else btn">
+                        <ng-container *ngIf="choiceSelected?.id !== item.correct.idChoice;">
+                          <img class="w-10 h-10 cursor-pointer" src="/assets/img/btn-sai.png" alt="">
+                        </ng-container>
+                        <ng-container *ngIf="choiceSelected?.id === item.correct.idChoice;">
+                          <img class="w-10 h-10 cursor-pointer" src="/assets/img/btn-dung.png" alt="">
+                        </ng-container>
+  
+                      </ng-container>
+                      <ng-template #btn>
+                        <img class="w-10 h-10 cursor-pointer" src="/assets/img/btn.png" alt="">
+                      </ng-template>
+                      <div class="absolute top-[42%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-white text-2xl">
+                        <ng-container *ngIf="j===0">A</ng-container>
+                        <ng-container *ngIf="j===1">B</ng-container>
+                        <ng-container *ngIf="j===2">C</ng-container>
+                        <ng-container *ngIf="j===3">D</ng-container>
+                      </div>
+                    </div>
+                    <div class="font-bold text-[#CA4D1C] animate__delay-1s animate__animated animate__zoomIn" [ngClass]="{'animate__headShake': choiceSelected && choiceSelected?.id === c.id && choiceSelected?.id !== item.correct.idChoice, 'animate__flash': choiceSelected && choiceSelected?.id === c.id && choiceSelected?.id === item.correct.idChoice}">{{c.name}}</div>
+                  </div>
+                  
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+  
+        </div>
+      </div>
+  
+    
+      <div class="absolute top-10 bottom-14 right-12 space-y-8">
+        <div class="flex flex-col justify-between h-full">
+          <div class="flex flex-col space-y-1 items-center">
+            <img class="animate__animated animate__infinite" [ngClass]="{'animate__tada ': isCorrectAnswer === 1}" [ngClass]="{'animate__pulse  ': isCorrectAnswer === 2}"  [class.animate__tada]="isCorrectAnswer === 1" [src]="isCorrectAnswer === 1 ? '/assets/img/ngoi-sao-cuoi.png' : (isCorrectAnswer === 2 ? '/assets/img/ngoi-sao-buon.png' : '/assets/img/ngoi-sao-cuoi.png')" width="80px" alt="">
+            <div class="font-bold text-6xl text-[#FDC130]" style="text-shadow: 1.25px 1.25px #eee">{{score}}</div>
+          </div>
+          <div>
+            <div class="flex flex-col space-y-4">
+              <div class="flex flex-col space-y-1 items-center">
+                <img src="/assets/img/loa.png" width="60px" alt="">
+                <div class="font-bold text-2xl text-[#FDC130] cursor-pointer" style="text-shadow: 1.25px 1.25px #eee">Nghe lại</div>
+              </div>
+        
+              <div class="flex flex-col space-y-1 items-center">
+                <img src="/assets/img/menu.png" width="60px" alt="">
+                <div class="font-bold text-2xl text-[#FDC130] cursor-pointer" style="text-shadow: 1.25px 1.25px #eee">Menu</div>
               </div>
             </div>
-          </ng-container>
-        </ng-container>
-
+          </div>
+        </div>
       </div>
-    </div>
-
   
-    <div class="absolute top-10 bottom-14 right-12 space-y-8">
-      <div class="flex flex-col justify-between h-full">
-        <div class="flex flex-col space-y-1 items-center">
-          <img class="animate__animated animate__infinite" [ngClass]="{'animate__tada ': isCorrectAnswer === 1}" [ngClass]="{'animate__pulse  ': isCorrectAnswer === 2}"  [class.animate__tada]="isCorrectAnswer === 1" [src]="isCorrectAnswer === 1 ? '/assets/img/ngoi-sao-cuoi.png' : (isCorrectAnswer === 2 ? '/assets/img/ngoi-sao-buon.png' : '/assets/img/ngoi-sao-cuoi.png')" width="80px" alt="">
-          <div class="font-bold text-6xl text-[#FDC130]" style="text-shadow: 1.25px 1.25px #eee">{{score}}</div>
-        </div>
-        <div>
-          <div class="flex flex-col space-y-4">
-            <div class="flex flex-col space-y-1 items-center">
-              <img src="/assets/img/loa.png" width="60px" alt="">
-              <div class="font-bold text-2xl text-[#FDC130]" style="text-shadow: 1.25px 1.25px #eee">Nghe lại</div>
-            </div>
+      <div class="absolute left-1 bottom-0">
+        <img src="/assets/img/hoa-1.png" width="55px" alt="">
+      </div>
+  
+      <div class="absolute left-12 bottom-0">
+        <img src="/assets/img/hoa-2.png" width="55px" alt="">
+      </div>
+  
+      <div class="absolute left-32 bottom-0">
+        <img src="/assets/img/hoa-3.png" width="48px" alt="">
+      </div>
+  
+      <div class="absolute right-4 bottom-[6px]">
+        <img src="/assets/img/hoa-5.png" width="45px" alt="">
+      </div>
       
-            <div class="flex flex-col space-y-1 items-center">
-              <img src="/assets/img/menu.png" width="60px" alt="">
-              <div class="font-bold text-2xl text-[#FDC130]" style="text-shadow: 1.25px 1.25px #eee">Menu</div>
+      <div class="absolute right-[144px] bottom-[32px]">
+        <img src="/assets/img/hoa-5.png" width="45px" alt="">
+      </div>
+    </div>
+  
+  </div>
+  
+  <!-- <ng-template #begin>
+    <div class="absolute top-32 right-24 bottom-28 left-60" >
+      <div
+        class="bg-[#faf9fd] h-full rounded-lg p-3"
+        style="box-shadow: 0 0 44px 22px #faf9fd"
+      >
+        <div (click) ="start()" class="h-full flex justify-center items-center ">
+          <div [ngClass]="{'animate__animated animate__zoomOut': isReady}" class="cursor-pointer animate-bounce">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-2h-24 stroke-yellow-300" fill="none"  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /> <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /> </svg>
+            <div class="font-bold text-lg text-[#c94c1f] mt-2">
+              Bắt đầu
             </div>
           </div>
         </div>
+  
+        
       </div>
     </div>
-
-    <div class="absolute left-1 bottom-0">
-      <img src="/assets/img/hoa-1.png" width="55px" alt="">
-    </div>
-
-    <div class="absolute left-12 bottom-0">
-      <img src="/assets/img/hoa-2.png" width="55px" alt="">
-    </div>
-
-    <div class="absolute left-32 bottom-0">
-      <img src="/assets/img/hoa-3.png" width="48px" alt="">
-    </div>
-
-    <div class="absolute right-4 bottom-[6px]">
-      <img src="/assets/img/hoa-5.png" width="45px" alt="">
-    </div>
-    
-    <div class="absolute right-[144px] bottom-[32px]">
-      <img src="/assets/img/hoa-5.png" width="45px" alt="">
-    </div>
-  </div>
-
+  </ng-template> -->
 </div>
-
-<!-- <ng-template #begin>
-  <div class="absolute top-32 right-24 bottom-28 left-60" >
-    <div
-      class="bg-[#faf9fd] h-full rounded-lg p-3"
-      style="box-shadow: 0 0 44px 22px #faf9fd"
-    >
-      <div (click) ="start()" class="h-full flex justify-center items-center ">
-        <div [ngClass]="{'animate__animated animate__zoomOut': isReady}" class="cursor-pointer animate-bounce">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-2h-24 stroke-yellow-300" fill="none"  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /> <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /> </svg>
-          <div class="font-bold text-lg text-[#c94c1f] mt-2">
-            Bắt đầu
-          </div>
-        </div>
-      </div>
-
-      
-    </div>
-  </div>
-</ng-template> -->
