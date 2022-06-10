@@ -1,4 +1,4 @@
-<div class="py-4 bg-[url('/assets/img/bg-sky.png')] bg-repeat-x">
+<div class="py-4 bg-[url('/assets/img/bg-sky.png')] bg-repeat-x w-[980px] lg:w-full">
   <div class="text-center text-4xl font-bold text-red-400 ">
     <div class="animate__animated animate__flash animate__infinite">
       Game Ong Tìm Mật!
@@ -36,7 +36,7 @@
       
               <div class="absolute left-[50px] right-[50px] bottom-[55px]">
                 <div class="grid grid-cols-2 gap-4">
-                  <div class="grid grid-cols-[40px_1fr] items-center gap-x-3 cursor-pointer" *ngFor="let c of item.choices;let j=index" (click)="choiceSelected ? null : answer(c, item)">
+                  <div class="grid grid-cols-[40px_1fr] items-center gap-x-3 cursor-pointer transition transform hover:scale-105" *ngFor="let c of item.choices;let j=index" (click)="choiceSelected ? null : answer(c, item)">
                     <div class="relative w-10 h-10">
                       <ng-container *ngIf="choiceSelected && choiceSelected?.id === c.id; else btn">
                         <ng-container *ngIf="choiceSelected?.id !== item.correct.idChoice;">
@@ -57,7 +57,9 @@
                         <ng-container *ngIf="j===3">D</ng-container>
                       </div>
                     </div>
-                    <div class="font-bold text-[#CA4D1C] animate__delay-1s animate__animated animate__zoomIn" [ngClass]="{'animate__headShake': choiceSelected && choiceSelected?.id === c.id && choiceSelected?.id !== item.correct.idChoice, 'animate__flash': choiceSelected && choiceSelected?.id === c.id && choiceSelected?.id === item.correct.idChoice}">{{c.name}}</div>
+                    <div>
+                      <div class="font-bold text-[#CA4D1C] animate__delay-1s animate__animated animate__zoomIn hover:animate__bounce" [ngClass]="{'animate__headShake': choiceSelected && choiceSelected?.id === c.id && choiceSelected?.id !== item.correct.idChoice, 'animate__flash': choiceSelected && choiceSelected?.id === c.id && choiceSelected?.id === item.correct.idChoice}">{{c.name}}</div>
+                    </div>
                   </div>
                   
                 </div>
@@ -73,16 +75,16 @@
         <div class="flex flex-col justify-between h-full">
           <div class="flex flex-col space-y-1 items-center">
             <img class="animate__animated animate__infinite" [ngClass]="{'animate__tada ': isCorrectAnswer === 1}" [ngClass]="{'animate__pulse  ': isCorrectAnswer === 2}"  [class.animate__tada]="isCorrectAnswer === 1" [src]="isCorrectAnswer === 1 ? '/assets/img/ngoi-sao-cuoi.png' : (isCorrectAnswer === 2 ? '/assets/img/ngoi-sao-buon.png' : '/assets/img/ngoi-sao-cuoi.png')" width="80px" alt="">
-            <div class="font-bold text-6xl text-[#FDC130]" style="text-shadow: 1.25px 1.25px #eee">{{score}}</div>
+            <div class="font-bold text-6xl text-[#FDC130] animate__animated  animate__infinite " [class.animate__swing]="score" [ngClass]="{'animate__heartBeat ': isCorrectAnswer === 1}" style="text-shadow: 1.25px 1.25px #eee">{{score}}</div>
           </div>
           <div>
             <div class="flex flex-col space-y-4">
-              <div class="flex flex-col space-y-1 items-center">
+              <div class="flex flex-col space-y-1 items-center transition transform hover:scale-110 cursor-pointer">
                 <img src="/assets/img/loa.png" width="60px" alt="">
                 <div class="font-bold text-2xl text-[#FDC130] cursor-pointer" style="text-shadow: 1.25px 1.25px #eee">Nghe lại</div>
               </div>
         
-              <div class="flex flex-col space-y-1 items-center">
+              <div class="flex flex-col space-y-1 items-center transition transform hover:scale-110 cursor-pointer">
                 <img src="/assets/img/menu.png" width="60px" alt="">
                 <div class="font-bold text-2xl text-[#FDC130] cursor-pointer" style="text-shadow: 1.25px 1.25px #eee">Menu</div>
               </div>

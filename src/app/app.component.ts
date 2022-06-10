@@ -52,11 +52,12 @@ export class AppComponent {
         this.isHoneycombHive = true;
       }
       if (nextQuestions.length) {
+        const nextQuestionAudio = new Audio('../assets/audio/bell.mp3');
+        nextQuestionAudio.play();
         this.isCorrectAnswer = 0;
         this.choiceSelected = null;
         this.questionSelectedIndex = this.questionSelectedIndex + 1;
         this.listOfQuestions = nextQuestions;
-        //  gen text
         //  getAudio
 
       } else {
@@ -74,7 +75,6 @@ export class AppComponent {
     ).subscribe(res => {
       this.listOfQuestionsOrigin = res;
       this.listOfQuestions = [this.listOfQuestionsOrigin[0]];
-      // gen text
       // getAudio
     
     })
