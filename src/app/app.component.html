@@ -4,10 +4,9 @@
       Game Ong Tìm Mật!
     </div>
   </div>
-  <div class="bg-[url('/assets/img/bg.png')] h-[550px] w-[980px] bg-cover bg-no-repeat overflow-hidden mx-auto rounded-lg mt-6  shadow-lg">
+  <div class="bg-[url('/assets/img/bg.svg')] h-[550px] w-[980px] bg-cover bg-no-repeat overflow-hidden mx-auto rounded-lg mt-6  shadow-lg">
     <div class="relative h-full">
       <div class="hive absolute top-6 -left-[80px]" [class.to-ong-rong]="!isHoneycombHive" [class.to-ong-mat]="isHoneycombHive" [class.honey]="isCorrectAnswer === 1">
-        <!-- <img src="/assets/img/to-ong-rong.png" width="250px" alt=""> -->
       </div>
       <div class="bee w-24 rounded h-24 absolute bg-contain bg-no-repeat transition" [class.fly]="isCorrectAnswer === 1" [class.sad]="isCorrectAnswer === 2"></div>
   
@@ -16,7 +15,7 @@
       <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
         <div class="relative">
           <div class="flex w-[580px]">
-            <img src="/assets/img/bang.png">
+            <img src="/assets/img/bang.svg">
           </div>
   
           <div class="absolute top-0 left-1/2 -translate-x-1/2">
@@ -40,15 +39,15 @@
                     <div class="relative w-10 h-10">
                       <ng-container *ngIf="choiceSelected && choiceSelected?.id === c.id; else btn">
                         <ng-container *ngIf="choiceSelected?.id !== item.correct.idChoice;">
-                          <img class="w-10 h-10 cursor-pointer" src="/assets/img/btn-sai.png" alt="">
+                          <img class="w-10 h-10 cursor-pointer" src="/assets/img/btn-sai.svg" alt="">
                         </ng-container>
                         <ng-container *ngIf="choiceSelected?.id === item.correct.idChoice;">
-                          <img class="w-10 h-10 cursor-pointer" src="/assets/img/btn-dung.png" alt="">
+                          <img class="w-10 h-10 cursor-pointer" src="/assets/img/btn-dung.svg" alt="">
                         </ng-container>
   
                       </ng-container>
                       <ng-template #btn>
-                        <img class="w-10 h-10 cursor-pointer" src="/assets/img/btn.png" alt="">
+                        <img class="w-10 h-10 cursor-pointer" src="/assets/img/btn.svg" alt="">
                       </ng-template>
                       <div class="absolute top-[42%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-white text-2xl">
                         <ng-container *ngIf="j===0">A</ng-container>
@@ -74,18 +73,18 @@
       <div class="absolute top-10 bottom-14 right-12 space-y-8">
         <div class="flex flex-col justify-between h-full">
           <div class="flex flex-col space-y-1 items-center">
-            <img class="animate__animated animate__infinite" [ngClass]="{'animate__tada ': isCorrectAnswer === 1}" [ngClass]="{'animate__pulse  ': isCorrectAnswer === 2}"  [class.animate__tada]="isCorrectAnswer === 1" [src]="isCorrectAnswer === 1 ? '/assets/img/ngoi-sao-cuoi.png' : (isCorrectAnswer === 2 ? '/assets/img/ngoi-sao-buon.png' : '/assets/img/ngoi-sao-cuoi.png')" width="80px" alt="">
+            <img class="animate__animated animate__infinite" [ngClass]="{'animate__tada ': isCorrectAnswer === 1}" [ngClass]="{'animate__pulse  ': isCorrectAnswer === 2}"  [class.animate__tada]="isCorrectAnswer === 1" [src]="isCorrectAnswer === 1 ? '/assets/img/ngoi-sao-cuoi.svg' : (isCorrectAnswer === 2 ? '/assets/img/ngoi-sao-buon.svg' : '/assets/img/ngoi-sao-cuoi.svg')" width="80px" alt="">
             <div class="font-bold text-6xl text-[#FDC130] animate__animated  animate__infinite " [class.animate__swing]="score" [ngClass]="{'animate__heartBeat ': isCorrectAnswer === 1}" style="text-shadow: 1.25px 1.25px #eee">{{score}}</div>
           </div>
           <div>
             <div class="flex flex-col space-y-4">
               <div class="flex flex-col space-y-1 items-center transition transform hover:scale-110 cursor-pointer">
-                <img src="/assets/img/loa.png" width="60px" alt="">
+                <img src="/assets/img/loa.svg" width="60px" alt="">
                 <div class="font-bold text-2xl text-[#FDC130] cursor-pointer" style="text-shadow: 1.25px 1.25px #eee">Nghe lại</div>
               </div>
         
               <div class="flex flex-col space-y-1 items-center transition transform hover:scale-110 cursor-pointer">
-                <img src="/assets/img/menu.png" width="60px" alt="">
+                <img src="/assets/img/menu.svg" width="60px" alt="">
                 <div class="font-bold text-2xl text-[#FDC130] cursor-pointer" style="text-shadow: 1.25px 1.25px #eee">Menu</div>
               </div>
             </div>
