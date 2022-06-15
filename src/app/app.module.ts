@@ -9,7 +9,6 @@ import { LazyImgDirective } from './lazyimg.directive';
 @NgModule({
   declarations: [
     AppComponent,
-    LazyImgDirective
   ],
   imports: [
     BrowserModule,
