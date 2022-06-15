@@ -1,4 +1,3 @@
-<img class="hidden" *ngFor="let img of listOfPreloadImages;" [src]="img" />
 
 <div class="py-4 bg-[url('/assets/img/bg-sky.png')] bg-repeat-x w-[980px] lg:w-full">
   <div class="text-center text-4xl font-bold text-red-400 ">
@@ -154,3 +153,5 @@
     </div>
   </ng-template> -->
 </div>
+
+<img class="invisible flex w-2 h-2" *ngFor="let img of listOfPreloadImages;" [src]="img" />

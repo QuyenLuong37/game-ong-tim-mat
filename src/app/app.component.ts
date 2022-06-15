@@ -29,7 +29,7 @@ export class AppComponent {
   thinkingSound: HTMLAudioElement | any;
   listOfPreloadImages;
   constructor(private http: HttpClient) {
-    this.listOfPreloadImages = ['/assets/img/bang.svg', '/assets/img/bang.svg', '/assets/img/bien.png','assets/img/btn.svg', 'assets/img/btn-sai.svg', 'assets/img/btn-dung.svg', '/assets/img/ngoi-sao-cuoi.svg', '/assets/img/ngoi-sao-buon.svg', '/assets/img/to-ong.svg', '/assets/img/to-ong-rong.svg', '/assets/img/bee-1.png', '/assets/img/bee-2.png', '/assets/img/bee-3.png', '/assets/img/bee-4.png', '/assets/img/bee-sad.png', '/assets/img/jars.png']
+    this.listOfPreloadImages = ['/assets/img/bang.svg', '/assets/img/bang.svg', '/assets/img/bien.png','/assets/img/btn.svg', '/assets/img/btn-sai.svg', '/assets/img/btn-dung.svg', '/assets/img/ngoi-sao-cuoi.svg', '/assets/img/ngoi-sao-buon.svg', '/assets/img/to-ong.svg', '/assets/img/to-ong-rong.svg', '/assets/img/bee-1.png', '/assets/img/bee-2.png', '/assets/img/bee-3.png', '/assets/img/bee-4.png', '/assets/img/bee-sad.png', '/assets/img/jars.png']
   }
   
   ngOnInit() {
