@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { timer, of, delay } from 'rxjs';
 import { data } from './data';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError } from 'rxjs';
 
 type CorrectAnswer = 0 | 1 | 2;
 
@@ -9,7 +11,7 @@ type CorrectAnswer = 0 | 1 | 2;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent { 
   isReady = false;
   listOfQuestionsOrigin: any[] = [];
   listOfQuestions: any[] = [];
@@ -20,12 +22,17 @@ export class AppComponent {
   voice: HTMLAudioElement | any;
   isCorrectAnswer: CorrectAnswer = 0;
   isHoneycombHive = false; // check tổ ong có mật để sưitch hình ảnh tổ ong
-  constructor() {
-    
+  html = '';
+  result = '';
+  speech: any;
+  speechData: any;
+  thinkingSound: HTMLAudioElement | any;
+  listOfPreloadImages;
+  constructor(private http: HttpClient) {
+    this.listOfPreloadImages = ['/assets/img/bang.svg', '/assets/img/bang.svg', '/assets/img/bien.png','assets/img/btn.svg', 'assets/img/btn-sai.svg', 'assets/img/btn-dung.svg', '/assets/img/ngoi-sao-cuoi.svg', '/assets/img/ngoi-sao-buon.svg', '/assets/img/to-ong.svg', '/assets/img/to-ong-rong.svg', '/assets/img/bee-1.png', '/assets/img/bee-2.png', '/assets/img/bee-3.png', '/assets/img/bee-4.png', '/assets/img/bee-sad.png', '/assets/img/jars.png']
   }
   
   ngOnInit() {
-    this.start();
   }
 
   replay() {
@@ -35,6 +42,12 @@ export class AppComponent {
 
   answer(choice: any, question: any) {
     this.choiceSelected = choice;
+    this.voice?.pause();
+    this.voice.currentTime = 0;
+    if (this.thinkingSound) {
+      this.thinkingSound?.pause();
+      this.thinkingSound.currentTime = 0;
+    }
     const nextQuestions = this.listOfQuestionsOrigin.filter((i, index) => index === this.questionSelectedIndex + 1);
     if (choice?.id === question.correct.idChoice) {
       this.isCorrectAnswer = 1;
@@ -58,7 +71,8 @@ export class AppComponent {
         this.choiceSelected = null;
         this.questionSelectedIndex = this.questionSelectedIndex + 1;
         this.listOfQuestions = nextQuestions;
-        //  getAudio
+        const textToSpeech = this.convertTextToSpeech();
+         this.getAudio(textToSpeech);
 
       } else {
         timer(5000).subscribe(() => {
@@ -75,16 +89,52 @@ export class AppComponent {
     ).subscribe(res => {
       this.listOfQuestionsOrigin = res;
       this.listOfQuestions = [this.listOfQuestionsOrigin[0]];
+      const textToSpeech = this.convertTextToSpeech();
+      this.getAudio(textToSpeech);
       // getAudio
-    
+      
     })
   }
 
   start() {
     this.isReady = true;
-    // const startAudio = new Audio('../assets/audio/start.mp3');
-    // startAudio.play();
     this.getQuestions();
+  }
+
+  getAudio(text: string) {
+    this.http.post(`https://texttospeech.googleapis.com/v1beta1/text:synthesize?key=AIzaSyDCP5_20c8li-BvfBSxOBpl6Q97ik8bzls`, {
+      "audioConfig": {
+        "audioEncoding": "LINEAR16",
+        "pitch": 0,
+        "speakingRate": 1
+      },
+      "input": {
+        "text": text
+      },
+      "voice": {
+        "languageCode": "vi-VN",
+        "name": "vi-VN-Standard-A"
+      }
+    }, {
+      headers: {
+        // 'Authorization': 'Bearer AIzaSyDCP5_20c8li-BvfBSxOBpl6Q97ik8bzls'
+      }
+    }).pipe(
+      catchError(err => {
+        return of(err);
+      })
+    ).subscribe(res => {
+      console.log('res: ', res);
+      this.voice = new Audio("data:audio/wav;base64," + res.audioContent);
+      this.voice.play().then((r: any) => {
+        console.log('result: ', r);
+        
+      });
+      this.voice.addEventListener("ended", () => {
+        this.thinkingSound = new Audio('../assets/audio/audiothinking.mp3');
+        this.thinkingSound.play();
+      });
+    })
   }
 
   private convertTextToSpeech() {
