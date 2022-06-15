@@ -60,7 +60,7 @@ export class AppComponent {
       correctAudio.play();
     }
     
-    timer(5000).subscribe(() => {
+    timer(500000).subscribe(() => {
       if (this.isCorrectAnswer === 1) {
         this.isHoneycombHive = true;
       }

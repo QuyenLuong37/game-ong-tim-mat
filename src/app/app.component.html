@@ -75,7 +75,7 @@
                         </div>
                       </div>
                       <div>
-                        <div class="font-bold text-[#CA4D1C] animate__delay-1s animate__animated animate__zoomIn hover:animate__bounce" [ngClass]="{'animate__headShake': choiceSelected && choiceSelected?.id === c.id && choiceSelected?.id !== item.correct.idChoice, 'animate__flash': choiceSelected && choiceSelected?.id === c.id && choiceSelected?.id === item.correct.idChoice}">{{c.name}}</div>
+                        <div class="font-bold text-[#CA4D1C] animate__delay-1s animate__animated animate__zoomIn hover:animate__bounce" [ngClass]="{'animate__headShake': choiceSelected && choiceSelected?.id === c.id && choiceSelected?.id !== item.correct.idChoice, 'animate__flash': choiceSelected && choiceSelected?.id === c.id && choiceSelected?.id === item.correct.idChoice}" [class.text-correct]="choiceSelected?.id === c.id  && isCorrectAnswer === 1" [class.text-wrong]="choiceSelected?.id === c.id  && isCorrectAnswer === 2">{{c.name}}</div>
                       </div>
                     </div>
                     
